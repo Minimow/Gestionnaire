@@ -1,0 +1,70 @@
+// -------------------------------------------------------------------
+GESTIONNAIRE 101
+// -------------------------------------------------------------------
+Gestion des erreurs utilisateurs, return ou pas, message plus exacte, log
+Gestion des erreurs base de donnees
+ModifierQualifDialog, bouton reset default
+Si on change decran le mainframe les dialog pop sur lecran initial
+apres modifqualif, lupdate est pas automatique
+dans les modifQualifs, changer les exceptions, en ce moment meme si ya juste une mauvaise date, les 2 sont annulees
+pas seulement les abbreviations dans le modifQualif
+supprimer une qualif
+indicateur des champs modifiés lors de la modif dun employe
+erreur dans les formulaires pas un dialog
+message de confirmation ajout/modif
+transaction modif employe (pour les coord et employe en meme temps)
+ajout du bloc finally dans les try catch,
+clean up de isValid de employeDAO (enlever les try catch pas necessaire)
+get/set a revoir, les get doivent retourner une nouvelle instance, pas lattribut en tant que tel
+verifier les = et les remplacer par des .equals()^
+dans les DAO, prendre en compte que les id sont pt introuvables, donc il faut les creer
+dans les DAO, sil un get retourne null, renvoyer une erreur
+add @override sur les methodes, entre toString dans les objets
+jtextarea du remplacement box, a revoir, surtout la capacite, et laffichage si on écrit trop de texte
+
+
+ajouter son au messages derreur
+barre propriete de ce que quoi tu fais
+ajouter un * quand tu fais une modif, pour tindiquer ce que tu as deja modifié
+
+stats most ppl per qualif
+liste un count / total
+stats remplacement, la raison la plus fréquemment utilisée
+stats sur lannée dexperience
+bare doutils : 3 long togglebutton Employes / Stats / Outils (Gestion)
+allow multiple tags for the stats pane
+changer le subject pattern, ne pas lassocier directement a un component, mais plustot dans laction du component parent
+
+/------------------------------------------------------------------------------------------------------------------------
+Once a update has been made in admin mode, make sure to affect the others panes with the update (ajoutEmp, adminPane).
+When you add or modify an item in admin mode, make sure to expand the JList size or make it already wide.
+stats gars fille / emp par année
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------
+BASE DE DONNÉES
+// -------------------------------------------------------------------
+- Trigger qualificationsEmployes dateExpiration > dateQualification
+- Not Null sur les dateQualification
+- Renommer certaines colommnes
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------
+DESIGN
+// -------------------------------------------------------------------
+Lorsqu'on update la qualification d'un employe, doit-on stocke les anciennes valeurs?
