@@ -52,9 +52,10 @@ public class DBConnection {
 			conn = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost:3306/gestionnaire?allowMultiQueries=true",
-							"julien", "bic12125");
+							"Julien", "bic12125");
 			System.out.println("Connexion O.K.");
 		} catch (Exception err) {
+			System.out.println(err.getMessage());
 			System.out.println("Error: could not connect to the database.");
 		}
 	}

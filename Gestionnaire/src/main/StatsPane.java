@@ -13,7 +13,6 @@ import java.util.Map;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
@@ -610,7 +609,7 @@ public class StatsPane extends JPanel {
 			statsBoxListAncienneteActive.getModel().addRow(rowData);
 		}
 
-		Dimension mostRempBoxSize = new Dimension(300, 400);
+		Dimension mostRempBoxSize = new Dimension(300, 200);
 		statsBoxListAncienneteActive.getTable().setPreferredScrollableViewportSize(
 				mostRempBoxSize);
 		statsBoxListAncienneteActive.getTable().getColumnModel().getColumn(0)

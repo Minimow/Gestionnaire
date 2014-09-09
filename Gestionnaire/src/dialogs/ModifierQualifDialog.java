@@ -99,9 +99,11 @@ public class ModifierQualifDialog extends JDialog  implements Subject{
 		rowBtn.add(btnValider);
 		rowBtn.add(btnAnnuler);
 
-		ImageIcon icone = IconLoader.createImageIcon("/qualifs/" + _acronyme
-				+ "_icone.jpg", new Dimension(50,50));
-		lblQualif.setIcon(icone);
+		if(_acronyme != null){
+			ImageIcon icone = IconLoader.createImageIcon("/qualifs/" + _acronyme
+					+ "_icone.jpg", new Dimension(50,50));
+			lblQualif.setIcon(icone);
+		}
 		this.add(lblQualif, BorderLayout.NORTH);
 		this.add(col1, BorderLayout.CENTER);
 		this.add(rowBtn, BorderLayout.SOUTH);
