@@ -23,6 +23,8 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import utilities.IconLoader;
+
 public class ErrorDialog extends JDialog{
 
 	private static final long serialVersionUID = 1L;
@@ -65,7 +67,6 @@ public class ErrorDialog extends JDialog{
 		this.setLayout(new BorderLayout());
 		this.setTitle(title);
 		this.setModal(true);
-
 		initComponent();
 		erreurSimple.setText(erreur);
 
@@ -85,7 +86,7 @@ public class ErrorDialog extends JDialog{
 		btnOk.setFocusPainted(false);
 		
 		// NORTH
-		ImageIcon icon = createImageIcon("/erreurDialog.png", "");
+		ImageIcon icon = IconLoader.createImageIcon("/erreurDialog.png", null);
 		imgErreur.setIcon(new ImageIcon(icon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
 		erreurSimple.setSize(new Dimension(400, 60));
 		erreurSimple.setLineWrap(true);
@@ -134,16 +135,6 @@ public class ErrorDialog extends JDialog{
 		});
 	}
 
-	protected ImageIcon createImageIcon(String path,
-			String description) {
-		URL imgURL = getClass().getResource(path);
-		if (imgURL != null) {
-			return new ImageIcon(imgURL, description);
-		} else {
-			System.err.println("Couldn't find file: " + path);
-			return null;
-		}
-	}
 	
 	private JLabel imgErreur = new JLabel();
 	private JTextPane erreurDetails = new JTextPane()

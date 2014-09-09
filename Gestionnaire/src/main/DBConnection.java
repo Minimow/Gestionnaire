@@ -1,10 +1,17 @@
 package main;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
+
+import dao.daoException.DAOException;
+import dialogs.ErrorDialog;
 
 /**
  * Singleton qui permet la connexion à la base de données.
@@ -31,14 +38,14 @@ public class DBConnection {
 	 * s'est effectuée avec succès.
 	 * 
 	 */
-	public static String MESSAGE_SUCCESS = "Opération réussie!";
+	public static final String MESSAGE_SUCCESS = "Opération réussie!";
 	
 	/**
 	 * Message utilisé pour signifier que la modification de la base de donnée
 	 * ne s'est pas effectuée avec succès.
 	 * 
 	 */
-	public static String MESSAGE_FAIL = "Opération échouée!";
+	public static final String MESSAGE_FAIL = "Opération échouée!";
 
 	/**
 	 * Constructeur privé qui se connecte à la base de donnée en utilisant les
@@ -47,16 +54,49 @@ public class DBConnection {
 	 */
 	private DBConnection() {
 		try {
+			// Get the driver
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Driver O.K.");
-			conn = DriverManager
-					.getConnection(
-							"jdbc:mysql://localhost:3306/gestionnaire?allowMultiQueries=true",
-							"Julien", "bic12125");
+			
+			// Read the config file where the info for the DB are stored
+			Properties prop = new Properties();
+	        String propFileName = "config.properties";
+	        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+	        prop.load(inputStream);
+	        if (inputStream == null) {
+	            throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+	        }
+
+	        // Get the property value
+	        String url = prop.getProperty("url");
+	        String user = prop.getProperty("user");
+	        String password = prop.getProperty("pdassword");
+	        
+	        // Connect to the database using the info from the config file
+			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("Connexion O.K.");
-		} catch (Exception err) {
-			System.out.println(err.getMessage());
-			System.out.println("Error: could not connect to the database.");
+			
+		} catch (ClassNotFoundException e) {
+			ErrorDialog ed = new ErrorDialog(null, MESSAGE_FAIL, "Le pilote"
+					+ " nécessaire pour la connexion avec la base de donnée n'a"
+					+ " pas pu être chargé.",
+					e.getMessage());
+			ed.setVisible(true);
+		} catch (IOException e) {
+			ErrorDialog ed = new ErrorDialog(null, MESSAGE_FAIL, "Les"
+					+ " informations nécessaires à la connexion à la base de"
+					+ " données n'ont pas pu être récupérées. Vérifiez si le"
+					+ " fichier config est bien présent.",
+					e.getMessage());
+			ed.setVisible(true);
+		} catch (SQLException e) {
+			ErrorDialog ed = new ErrorDialog(null, MESSAGE_FAIL, "Une erreur est"
+					+ " survenue lors de la connexion avec la base de données."
+					+ " Vérifiez si le service MySql est bien démarré ou la"
+					+ " validité des informations contenues dans le fichier"
+					+ " config.",
+					e.getMessage());
+			ed.setVisible(true);
 		}
 	}
 

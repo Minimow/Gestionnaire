@@ -55,43 +55,7 @@ public class LoginWindow extends JFrame {
 	}
 	
 	private void verifyIdentity() {
-		/*String username = _jtfUsername.getText();
-		int idToConnect = 0;
-		try {
-			String strQuery = "SELECT * " +
-					"FROM Membre " +
-					"WHERE m_username='" + username + "';";
-			Statement state = TemplateDB.getInstance().createStatement();
-			ResultSet result = state.executeQuery(strQuery);
-			// if there is a result else the username does not exist
-			if(result.next()) {
-				_lblMsgLogin.setText("Username verified");
-				char[] password = _jpfPassword.getPassword();
-				char[] correctPassword = (char[]) result.getString("m_password").toCharArray();
-				// if the user entered the right information
-				if((password.length == correctPassword.length) && Arrays.equals(password, correctPassword))
-				{
-					_lblMsgLogin.setText("Password verified");
-					idToConnect = result.getInt("m_id");
-					// Security mesure
-					Arrays.fill(correctPassword, '0');
-				}
-				else
-					_lblMsgLogin.setText("Error : Incorrect password");
-			}
-			else
-				_lblMsgLogin.setText("Error : Incorrect username");
-			result.close();
-			state.close();
-		}
-		catch (Exception e){
-			System.out.println("Incorrect access to the database.");
-		}
-		if(idToConnect != 0)
-			accessAccount(idToConnect);*/
 	}
-
-	
 
 	AbstractAction connectAction = new AbstractAction() {
 
