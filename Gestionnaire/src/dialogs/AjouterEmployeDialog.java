@@ -725,7 +725,10 @@ public class AjouterEmployeDialog extends JDialog implements Subject {
 		jtfFirstName.setText("");
 		jtfNoEmploye.setText("");
 		cmbSex.setSelectedItem("M");
-		cmbStatus.setSelectedIndex(0);
+		
+		if(modelStatus.getSize() != 0){
+			cmbStatus.setSelectedIndex(0);
+		}
 		jtfNoSDeS.setText("");
 		cmbDateOfBirth.setDate(Calendar.getInstance());
 		cmbHiringDate.setDate(Calendar.getInstance());
